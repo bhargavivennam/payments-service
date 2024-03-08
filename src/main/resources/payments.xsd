@@ -1,0 +1,36 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://spring.io/guides/payments-web-service"
+           targetNamespace="http://spring.io/guides/payments-web-service"
+           elementFormDefault="qualified">
+    <xs:element name="getPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transactionType" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transaction" type="tns:transactionType"/>
+                <xs:element name="cardType" type="tns:cardType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="transactionType">
+        <xs:sequence>
+            <xs:element name="paymentType" type="xs:string"/>
+            <xs:element name="cardType" type="tns:cardType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="cardType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Visa"/>
+            <xs:enumeration value="MasterCard"/>
+            <xs:enumeration value="PhonePe"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
